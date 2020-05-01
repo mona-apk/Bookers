@@ -1,7 +1,7 @@
 <% if model.errors.any? %>
-    <div class = "alert alert-warning">
-      <p><%= model.errors.full_messages.length %> errors prohibited this book from being saved:</p>
-        <ul>
+    <div class = "alert_container">
+      <p class="alert_heading"><%= model.errors.full_messages.length %> errors prohibited this book from being saved:</p>
+        <ul class="alert_list">
             <% model.errors.full_messages.each do |message| %>
                 <li><%= message %></li>
             <% end %>

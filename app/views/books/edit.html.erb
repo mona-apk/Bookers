@@ -1,15 +1,17 @@
 <section id="EditBookSection">
-  <h1>Editing Book</h1>
-  <%= form_for(@book) do |book| %>
-      <%= render 'layouts/error_messages', model: book.object %>
-      <h4>Title</h4>
-      <%= book.text_field :title %>
-      <h4>Body</h4>
-      <%= book.text_area :body %>
-      <br>
-      <%= book.submit 'Update Book' %>
-  <% end %>
-  <div class="">
-    <%= link_to "Show", book_path(@book) %> | <a href="/books">back</a>
+  <div class="wrap">
+    <h1>Editing Book</h1>
+    <%= form_for(@book) do |book| %>
+        <%= render 'layouts/error_messages', model: book.object %>
+        <h4>Title</h4>
+        <%= book.text_field :title %>
+        <h4>Body</h4>
+        <%= book.text_area :body %>
+        <br>
+        <%= book.submit 'Update Book' %>
+    <% end %>
+    <div class="">
+      <%= link_to "Show", book_path(@book) %> | <a href="/books">back</a>
+    </div>
   </div>
 </section>

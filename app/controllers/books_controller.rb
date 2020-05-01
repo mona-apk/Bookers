@@ -1,7 +1,7 @@
 class BooksController < ApplicationController
   def index
-    getAllBooks
-    new
+    getNewBook()
+    getAllBooks()
   end
 
   def show
@@ -12,31 +12,41 @@ class BooksController < ApplicationController
     @books = Book.all
   end
 
-  def new
+  def getNewBook
     @book = Book.new
   end
 
   def create
-    book = Book.new(book_params)
-    book.save
-    #これが呼ばれた時にBook was successfully created.を表示
-    redirect_to book_path(book.id)
+    @book = Book.new(book_params)
+    if @book.save
+      flash[:notice] = "Book was successfully created."
+      redirect_to book_path(@book.id)
+    else
+      getAllBooks()
+      render :index
+    end
   end
 
   def edit
-    #Book was successfully updated.
     @book = Book.find(params[:id])
   end
 
   def update
     book = Book.find(params[:id])
-    book.update(book_params)
-    redirect_to book_path(book)
+    if book.update(book_params)
+      flash[:notice] = "Book was successfully updated."
+      redirect_to book_path(book)
+    else
+      @book = book
+      render :edit
+    end
   end
 
   def destroy
     book = Book.find(params[:id])
-    book.destroy
+    if book.destroy
+      flash[:notice] = "Book was successfully destroyd."
+    end
     redirect_to books_path
   end
 

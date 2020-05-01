@@ -1,4 +1,14 @@
-<section class="single-blog">
+<% if flash[:notice] %>
+  <div class="flash">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
+<% if flash[:miss_notice] %>
+  <div class="flash unsuccessful">
+    <%= flash[:miss_notice] %>
+  </div>
+<% end %>
+<section>
   <p>Title:<%= @book.title %></p>
   <p>Body:<%= @book.body %></p>
   <div class="">
